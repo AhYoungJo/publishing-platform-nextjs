@@ -1,36 +1,94 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Blog Project
 
-## Getting Started
+Next.js 15와 TypeScript로 구축된 커뮤니티 블로그 플랫폼입니다.
 
-First, run the development server:
+## 🚀 주요 기능
+
+- **블로그 포스트 작성/읽기**
+- **사용자 인증**: 로그인/회원가입
+- **반응형 디자인**: 모바일 친화적 UI
+- **SEO 최적화**: 메타데이터 및 구조화된 데이터
+- **실시간 업데이트**: Next.js App Router
+
+## 🛠️ 기술 스택
+
+- **Frontend**: Next.js 15, React 19, TypeScript
+- **Styling**: Tailwind CSS 4
+- **Database**: MongoDB
+- **Authentication**: NextAuth.js
+- **Deployment**: Vercel
+
+## 📦 설치 및 실행
+
+### 필수 요구사항
+
+- Node.js 18.17 이상
+- npm 또는 yarn
+
+### 설치
+
+```bash
+# 저장소 클론
+git clone [repository-url]
+cd blog
+
+# 의존성 설치
+npm install
+```
+
+### 환경 변수 설정
+
+`.env.local` 파일을 생성하고 다음 변수들을 설정하세요:
+
+```env
+# NextAuth.js 설정
+NEXTAUTH_SECRET=your-secret-key
+NEXT_PUBLIC_API_URL=http://localhost:3000/api/
+
+# 데이터베이스 설정
+MONGODB_URL=your-database-url
+
+#깃허브 로그인 auth
+AUTH_GITHUB_ID=your-github-id
+AUTH_GITHUB_SECRET=your-github-secret
+
+#vercel 배포 url
+NEXT_DEPLOY_DOMAIN=your-vercel-depoly-url
+```
+
+### 개발 서버 실행
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+브라우저에서 [http://localhost:3000](http://localhost:3000)을 열어 확인하세요.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📁 프로젝트 구조
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+blog/
+├── src/
+│   ├── app/                 # Next.js App Router
+│   │   ├── (auth)/         # 인증 관련 페이지
+│   │   ├── (blog)/         # 블로그 관련 페이지
+│   │   └── api/            # API 라우트
+│   ├── components/         # 재사용 가능한 컴포넌트
+│   ├── libs/              # 유틸리티 및 설정
+│   ├── server/            # 서버 액션
+│   └── types/             # TypeScript 타입 정의
+├── public/                # 정적 파일
+└── ...
+```
 
-## Learn More
+## 🚀 배포
 
-To learn more about Next.js, take a look at the following resources:
+### Vercel 배포
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. [Vercel](https://vercel.com)에 가입
+2. GitHub 저장소와 MongoDB 연결
+3. 환경 변수 설정
+4. 자동 배포 완료
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**개발자**: 조아영
+**버전**: 1.0.0
