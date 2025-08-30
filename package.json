@@ -11,7 +11,9 @@
     "format:check": "prettier --check ."
   },
   "dependencies": {
+    "mongoose": "^8.18.0",
     "next": "15.5.2",
+    "next-auth": "^5.0.0-beta.20",
     "react": "19.1.0",
     "react-dom": "19.1.0"
   },
