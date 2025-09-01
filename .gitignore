@@ -39,3 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+.cz-config.js
+commitlint.config.js
+.husky/
+.vscode/

@@ -6,27 +6,55 @@
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "start": "next start",
-    "lint": "eslint",
+    "lint": "next lint",
+    "prepare": "husky install",
+    "commit": "cz",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "all": "concurrently \"json-server --watch src/db/db.json --port 5500\" \"next dev\""
   },
   "dependencies": {
-    "mongoose": "^8.18.0",
-    "next": "15.5.2",
-    "next-auth": "^5.0.0-beta.20",
-    "react": "19.1.0",
-    "react-dom": "19.1.0"
+    "concurrently": "^8.2.2",
+    "date-fns": "^3.6.0",
+    "json-server": "^1.0.0-beta.1",
+    "mongoose": "^8.5.3",
+    "next": "^14.2.32",
+    "next-auth": "^5.0.0-beta.29",
+    "react": "^18",
+    "react-dom": "^18",
+    "sharp": "^0.33.5",
+    "tailwind-merge": "^2.5.2",
+    "tailwindcss": "^4.1.12",
+    "uuid": "^10.0.0"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3",
-    "@tailwindcss/postcss": "^4",
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "@tailwindcss/postcss": "^4.1.12",
     "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "15.5.2",
-    "prettier": "^3.6.2",
-    "tailwindcss": "^4",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "@types/uuid": "^10.0.0",
+    "commitizen": "^4.3.1",
+    "cz-customizable": "^7.5.1",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.5",
+    "eslint-config-prettier": "^10.1.8",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.5",
+    "postcss": "^8",
     "typescript": "^5"
+  },
+  "main": "index.js",
+  "author": "",
+  "license": "ISC",
+  "lint-staged": {
+    "fe/**/*.{js,svelte}": "npm run lint:staged --prefix fe"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-customizable",
+      "config": ".cz-config.js"
+    }
   }
 }
