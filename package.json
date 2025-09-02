@@ -14,6 +14,7 @@
     "all": "concurrently \"json-server --watch src/db/db.json --port 5500\" \"next dev\""
   },
   "dependencies": {
+    "bcryptjs": "^3.0.2",
     "concurrently": "^8.2.2",
     "date-fns": "^3.6.0",
     "json-server": "^1.0.0-beta.1",
@@ -25,7 +26,8 @@
     "sharp": "^0.33.5",
     "tailwind-merge": "^2.5.2",
     "tailwindcss": "^4.1.12",
-    "uuid": "^10.0.0"
+    "uuid": "^10.0.0",
+    "zustand": "^5.0.8"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.8.1",

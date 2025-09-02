@@ -1,6 +1,10 @@
 import type {NextAuthConfig} from 'next-auth';
 import Github from 'next-auth/providers/github';
-import Google from 'next-auth/providers/google';
+// import Google from 'next-auth/providers/google';
+import Credentials from 'next-auth/providers/credentials';
+import {User} from '@/libs/schemas/users';
+import {connectToDB} from '@/libs/db';
+import bcrypt from 'bcryptjs';
 
 export const authConfig = {
   pages: {
@@ -71,15 +75,35 @@ export const authConfig = {
         },
       },
     }),
-    Google({
-      clientId:
-        process.env.NODE_ENV === 'development'
-          ? process.env.AUTH_GOOGLE_ID_DEV
-          : process.env.AUTH_GOOGLE_ID,
-      clientSecret:
-        process.env.NODE_ENV === 'development'
-          ? process.env.AUTH_GOOGLE_SECRET_DEV
-          : process.env.AUTH_GOOGLE_SECRET,
+    // Google({
+    //   clientId:
+    //     process.env.NODE_ENV === 'development'
+    //       ? process.env.AUTH_GOOGLE_ID_DEV
+    //       : process.env.AUTH_GOOGLE_ID,
+    //   clientSecret:
+    //     process.env.NODE_ENV === 'development'
+    //       ? process.env.AUTH_GOOGLE_SECRET_DEV
+    //       : process.env.AUTH_GOOGLE_SECRET,
+    // }),
+    Credentials({
+      name: 'Credentials',
+      credentials: {
+        email: {label: 'Email', type: 'email'},
+        password: {label: 'Password', type: 'password'},
+      },
+      async authorize(credentials) {
+        if (!credentials?.email || !credentials?.password) return null;
+        await connectToDB();
+        const {email, password} = credentials as {
+          email: string;
+          password: string;
+        };
+        const user = await User.findOne({email});
+        if (!user) return null;
+        const ok = await bcrypt.compare(password, user.password);
+        if (!ok) return null;
+        return {id: String(user._id), name: user.name, email: user.email};
+      },
     }),
   ],
   session: {
@@ -90,5 +114,5 @@ export const authConfig = {
   jwt: {
     maxAge: 2 * 60 * 60, // JWT 토큰 만료 시간 (2시간)
   },
-  secret: process.env.NEXT_AUTH_SECRET,
+  secret: process.env.NEXTAUTH_SECRET,
 } satisfies NextAuthConfig;

@@ -3,3 +3,11 @@
 body {
   list-style: none;
 }
+
+.checked-icon {
+  background-image: url('/html/check_icon.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 16px;
+  border-color: transparent;
+}
